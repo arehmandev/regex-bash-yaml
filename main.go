@@ -14,7 +14,14 @@ var (
 )
 
 func main() {
+	createyaml(globalvars)
 	bashtoyaml(filepath, globalvars)
+	bashtoyaml(filepath, globalvars) // can add more than one bash file and append it to the yaml
+}
+
+func createyaml(destination string) {
+	os.Create(destination)
+
 }
 
 func bashtoyaml(source, destination string) {
@@ -25,7 +32,7 @@ func bashtoyaml(source, destination string) {
 	defer file.Close()
 
 	scanner := bufio.NewScanner(file)
-	os.Create(destination)
+	// os.Create(destinationx)
 	for scanner.Scan() {
 		// each line's test as a string
 		stringline := scanner.Text()
